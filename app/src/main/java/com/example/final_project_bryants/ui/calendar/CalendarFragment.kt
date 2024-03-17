@@ -6,14 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.example.final_project_bryants.MainActivity
 import com.example.final_project_bryants.databinding.FragmentCalendarBinding
 
 class CalendarFragment : Fragment() {
 
     private var _binding: FragmentCalendarBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -21,11 +19,13 @@ class CalendarFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val slideshowViewModel =
-            ViewModelProvider(this).get(CalendarViewModel::class.java)
-
         _binding = FragmentCalendarBinding.inflate(inflater, container, false)
         val root: View = binding.root
+
+        binding.calendar.setOnDateChangeListener { view, year, month, dayOfMonth ->
+            // Call a function in MainActivity to handle fragment change
+            (activity as? MainActivity)?.changeFragment(year, month, dayOfMonth)
+        }
 
         return root
     }
