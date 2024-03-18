@@ -8,26 +8,31 @@ import androidx.fragment.app.Fragment
 import com.example.final_project_bryants.R
 import com.smarteist.autoimageslider.SliderView
 import com.smarteist.autoimageslider.SliderAnimations
+import androidx.navigation.fragment.findNavController
+import com.example.final_project_bryants.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {
 
+    private var _binding: FragmentHomeBinding? = null
+    private val binding get() = _binding!!
+  
     lateinit var imageUrl: ArrayList<String>
     lateinit var sliderView: SliderView
     lateinit var sliderAdapter: SliderAdapter
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        val view = inflater.inflate(R.layout.fragment_home, container, false)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        val view = binding.root
         sliderView = view.findViewById(R.id.slider)
-        return view
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        binding.fabAddItem.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_addItemFragment)
+        }
+        
         imageUrl = ArrayList()
         imageUrl.add("https://practice.geeksforgeeks.org/_next/image?url=https%3A%2F%2Fmedia.geeksforgeeks.org%2Fimg-practice%2Fbanner%2Fdsa-self-paced-thumbnail.png&w=1920&q=75")
         imageUrl.add("https://practice.geeksforgeeks.org/_next/image?url=https%3A%2F%2Fmedia.geeksforgeeks.org%2Fimg-practice%2Fbanner%2Fdata-science-live-thumbnail.png&w=1920&q=75")
@@ -51,6 +56,5 @@ class HomeFragment : Fragment() {
         // on below line we are calling start
         // auto cycle to start our cycle.
         sliderView.startAutoCycle()
-
     }
 }

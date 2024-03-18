@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Home Fragment Menu Item -->
+    <item
+        android:id="@+id/nav_home"
+        android:icon="@drawable/ic_action_home"
+        android:title="@string/menu_home" />
+
+    <!-- Add Item Fragment Menu Item -->
+    <item
+        android:id="@+id/nav_add_item"
+        android:icon="@drawable/ic_add_item"
+        android:title="@string/menu_add_item" />
+
+    <!-- Gallery Fragment Menu Item -->
+    <item
+        android:id="@+id/nav_gallery"
+        android:icon="@drawable/ic_menu_gallery"
+        android:title="@string/menu_gallery" />
+
+    <!-- Calendar Fragment Menu Item -->
+    <item
+        android:id="@+id/nav_calendar"
+        android:icon="@drawable/ic_action_calendar"
+        android:title="@string/menu_calendar" />
+</menu>
