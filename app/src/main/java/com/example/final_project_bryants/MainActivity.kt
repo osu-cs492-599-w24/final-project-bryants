@@ -2,6 +2,10 @@ package com.example.final_project_bryants
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import android.util.Log
+import android.view.Menu
+import com.google.android.material.snackbar.Snackbar
+import com.google.android.material.navigation.NavigationView
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
@@ -9,6 +13,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.final_project_bryants.databinding.ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.example.final_project_bryants.ui.calendar.DateDisplayFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -24,6 +29,13 @@ class MainActivity : AppCompatActivity() {
         // Retrieve NavHostFragment and NavController
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment_content_main) as NavHostFragment
         val navController = navHostFragment.navController
+      
+        binding.appBarMain.fab.setOnClickListener { view ->
+            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                .setAction("Action", null).show()
+        }
+
+        val navView: NavigationView = binding.navView
 
         // Defining top-level destinations in the AppBarConfiguration
         val appBarConfiguration = AppBarConfiguration(
@@ -41,10 +53,27 @@ class MainActivity : AppCompatActivity() {
         // Setup BottomNavigationView with NavController
         val bottomNavigationView: BottomNavigationView = binding.bottomNavigation
         bottomNavigationView.setupWithNavController(navController)
-    }
 
-    override fun onSupportNavigateUp(): Boolean {
-        // Ensure the NavHostFragment is correctly handling the support navigate up
-        return findNavController(R.id.nav_host_fragment_content_main).navigateUp() || super.onSupportNavigateUp()
+        override fun onSupportNavigateUp(): Boolean {
+            // Ensure the NavHostFragment is correctly handling the support navigate up
+            return findNavController(R.id.nav_host_fragment_content_main).navigateUp() || super.onSupportNavigateUp()
+        }
+
+    fun changeFragment(year: Int, month: Int, dayOfMonth: Int) {
+        try {
+            // Create a formatted date string
+            val selectedDate = "$year-$month-$dayOfMonth"
+
+            // Create a Bundle to hold the arguments
+            val bundle = Bundle().apply {
+                putString("selectedDate", selectedDate)
+            }
+
+            // Navigate to the DateDisplayFragment with arguments
+            findNavController(R.id.nav_host_fragment_content_main)
+                .navigate(R.id.nav_calendar_date, bundle)
+        } catch (e: Exception) {
+            Log.e("changeFragment", "Error navigating to DateDisplayFragment: ${e.message}")
+        }
     }
 }
