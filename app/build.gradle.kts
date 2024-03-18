@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("androidx.navigation.safeargs.kotlin")
     id("kotlin-kapt")
 }
 
@@ -50,6 +51,8 @@ dependencies {
     implementation ("androidx.navigation:navigation-ui-ktx:2.7.7")
     implementation ("androidx.recyclerview:recyclerview:1.3.2")
 
+    implementation("com.github.smarteist:autoimageslider:1.4.0")
+
     // Room Database
     implementation ("androidx.room:room-runtime:2.4.2")
     kapt ("androidx.room:room-compiler:2.4.2")
@@ -60,7 +63,7 @@ dependencies {
     implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2")
 
     // Glide for image loading
-    implementation ("com.github.bumptech.glide:glide:4.12.0")
+    implementation("com.github.bumptech.glide:glide:4.14.2")
     kapt ("com.github.bumptech.glide:compiler:4.12.0")
 
     testImplementation ("junit:junit:4.13.2")
