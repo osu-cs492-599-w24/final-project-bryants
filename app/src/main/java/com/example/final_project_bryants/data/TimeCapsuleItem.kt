@@ -1,9 +1,13 @@
 package com.example.final_project_bryants.data
 
-data class CapsuleItems(
-    @PrimaryKeey(autoGenerate = true) val itemId: Int = 0,
-    val capsuleId: Int,
-    val contentType: String, // this is the text
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+@Entity(tableName = "time_capsule_items")
+data class TimeCapsuleItem(
+    @PrimaryKey(autoGenerate = true) val id: Int = 0,
+    val type: String,
     val content: String,
-    val timeStamp: Long
+    val timestamp: Long,
+    val monthYear: String
 )
