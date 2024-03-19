@@ -12,6 +12,9 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.PickVisualMediaRequest
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.result.contract.ActivityResultContracts.PickVisualMedia.Companion.isPhotoPickerAvailable
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -32,7 +35,9 @@ class AddItemFragment : Fragment() {
 
     private val viewModel: AddItemViewModel by viewModels()
 
-    private lateinit var selectPhotoLauncher: ActivityResultLauncher<Intent>
+    private lateinit var selectPhotoLauncher: ActivityResultLauncher<PickVisualMediaRequest>
+
+    private var image_uri : String? = null
 
     companion object {
         private const val PERMISSION_REQUEST_READ_EXTERNAL_STORAGE = 100
@@ -41,6 +46,18 @@ class AddItemFragment : Fragment() {
     // Rest of your code as before...
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentAddItemBinding.inflate(inflater, container, false)
+        selectPhotoLauncher = registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri ->
+            // Callback is invoked after the user selects a media item or closes the
+            // photo picker.
+            if (uri != null) {
+                Log.d("PhotoPicker", "Selected URI: $uri")
+                binding.imageView.setImageURI(uri)
+                binding.imageView.visibility = View.VISIBLE
+                image_uri = uri.toString()
+            } else {
+                Log.d("PhotoPicker", "No media selected")
+            }
+        }
         return binding.root
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -89,11 +106,21 @@ class AddItemFragment : Fragment() {
                 "Text", "Link" -> {
                     binding.editTextContent.text.toString()
                 }
+                //If it is a photo get the uri and conver uri to a string
+                "Photo" -> {
+                    if (image_uri != null) {
+                        image_uri.toString()
+                    } else {
+                        // If image_uri is null, show a Toast and return an empty string
+                        Toast.makeText(requireContext(), "No Image Selected", Toast.LENGTH_LONG).show()
+                        return@setOnClickListener
+                    }
+                }
                 else -> ""
             }
             if (content.isNotEmpty()) {
                 val timestamp = System.currentTimeMillis()
-                val monthYear = SimpleDateFormat("MMMM yyyy", Locale.getDefault()).format(Date(timestamp))
+                val monthYear = SimpleDateFormat("MMMM dd yyyy", Locale.getDefault()).format(Date(timestamp))
                 val item = TimeCapsuleItem(0, type, content, timestamp, monthYear)
                 viewModel.insertItem(item)
             }
@@ -105,28 +132,12 @@ class AddItemFragment : Fragment() {
     }
 
     private fun checkPermissionAndPickImage() {
-        if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
-            pickImageFromGallery()
-        } else {
-            requestPermissions(arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE), PERMISSION_REQUEST_READ_EXTERNAL_STORAGE)
-        }
+        val test = context?.let { isPhotoPickerAvailable(it) }
+        Log.d("Test Act", "$test")
+        // Launch the photo picker and let the user choose only images.
+        selectPhotoLauncher.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
     }
 
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if (requestCode == PERMISSION_REQUEST_READ_EXTERNAL_STORAGE && grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-            pickImageFromGallery()
-        } else {
-            Toast.makeText(requireContext(), "Permission to access storage was denied", Toast.LENGTH_SHORT).show()
-        }
-    }
-
-    private fun pickImageFromGallery() {
-        val intent = Intent(Intent.ACTION_PICK).apply {
-            type = "image/*"
-        }
-        selectPhotoLauncher.launch(intent)
-    }
 
     override fun onDestroyView() {
         super.onDestroyView()
