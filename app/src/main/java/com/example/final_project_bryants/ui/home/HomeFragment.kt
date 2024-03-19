@@ -15,6 +15,7 @@ class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
+
   
     lateinit var imageUrl: ArrayList<String>
     lateinit var sliderView: SliderView
@@ -29,9 +30,6 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.fabAddItem.setOnClickListener {
-            findNavController().navigate(R.id.action_homeFragment_to_addItemFragment)
-        }
         
         imageUrl = ArrayList()
         imageUrl.add("https://practice.geeksforgeeks.org/_next/image?url=https%3A%2F%2Fmedia.geeksforgeeks.org%2Fimg-practice%2Fbanner%2Fdsa-self-paced-thumbnail.png&w=1920&q=75")

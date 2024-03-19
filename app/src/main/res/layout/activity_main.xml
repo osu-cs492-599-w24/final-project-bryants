@@ -28,13 +28,6 @@
             android:layout_below="@id/toolbar"
             app:layout_constraintTop_toBottomOf="@id/toolbar" />
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|end"
-            android:layout_margin="@dimen/fab_margin"
-            android:src="@drawable/ic_add_item" />
 
         <!-- BottomNavigationView correctly placed within the CoordinatorLayout -->
         <com.google.android.material.bottomnavigation.BottomNavigationView
