@@ -7,4 +7,6 @@ class TimeCapsuleRepository(private val itemDao: TimeCapsuleItemDao) {
     }
 
     // Add more repository methods as needed, e.g., for fetching items, deleting, etc.
+    fun getItemsByType(type: String) =
+        itemDao.getItemsByType(type)
 }

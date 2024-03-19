@@ -60,8 +60,8 @@ dependencies {
     implementation ("androidx.room:room-ktx:2.4.2")
 
     // Coroutines
-    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.2")
-    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2")
+    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
+    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
 
     // Glide for image loading
     implementation("com.github.bumptech.glide:glide:4.14.2")

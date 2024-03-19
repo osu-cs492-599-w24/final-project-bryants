@@ -6,7 +6,8 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
-    <string name="home_fragment_text">This is the home fragment</string>
+    <string name="home_fragment_text">Welcome To Time Capsule!</string>
+    <string name="home_fragment_description">Click on Add Item to add capsule or view previous capsules in Calendar</string>
     <string name="add_item">Add Item</string>
 
     <string name="hint_enter_content">Enter content...</string>

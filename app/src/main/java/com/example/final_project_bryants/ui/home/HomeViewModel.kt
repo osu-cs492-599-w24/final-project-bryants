@@ -1,32 +1,23 @@
-package com.example.final_project_bryants.ui.home
+package com.example.final_project_bryants.ui.item;
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.asLiveData
+import androidx.lifecycle.viewModelScope
+import com.example.final_project_bryants.data.AppDatabase
+import com.example.final_project_bryants.data.TimeCapsuleRepository
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import androidx.lifecycle.asLiveData
 
-class HomeViewModel : ViewModel() {
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is home Fragment"
-    }
-    val text: LiveData<String> = _text
+/**
+ * Result type to encapsulate success and failure scenarios.
+ */
 
-    // LiveData to handle navigation to the AddItemFragment
-    private val _navigateToAddItem = MutableLiveData<Boolean>()
-    val navigateToAddItem: LiveData<Boolean> = _navigateToAddItem
+class HomeViewModel(application: Application) : AndroidViewModel(application) {
 
-    /**
-     * Call this method when the Add Item button is clicked.
-     * It updates the LiveData to trigger navigation.
-     */
-    fun onAddItemClicked() {
-        _navigateToAddItem.value = true
-    }
+    private val repository = TimeCapsuleRepository(AppDatabase.getInstance(application).timeCapsuleItemDao())
 
-    /**
-     * Call this method once navigation is done or when the Fragment needs to reset the navigation state.
-     * It resets the LiveData used for triggering navigation, preventing unintended navigation events.
-     */
-    fun onAddItemNavigated() {
-        _navigateToAddItem.value = false
-    }
+    fun getItems(type: String) =
+        repository.getItemsByType(type).asLiveData()
 }

@@ -13,4 +13,7 @@ interface TimeCapsuleItemDao {
 
     @Query("SELECT * FROM time_capsule_items WHERE monthYear = :monthYear")
     fun getItemsByMonthYear(monthYear: String): Flow<List<TimeCapsuleItem>> // LiveData for observing data changes
+
+    @Query("SELECT * FROM time_capsule_items WHERE type = :type")
+    fun getItemsByType(type: String) : Flow<List<TimeCapsuleItem>>
 }
