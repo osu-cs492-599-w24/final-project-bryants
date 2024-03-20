@@ -16,4 +16,7 @@ interface TimeCapsuleItemDao {
 
     @Query("SELECT * FROM time_capsule_items WHERE type = :type")
     fun getItemsByType(type: String) : Flow<List<TimeCapsuleItem>>
+
+    @Query("SELECT * FROM time_capsule_items WHERE monthYear = :date")
+    fun getItemsByDate(date: String) : Flow<List<TimeCapsuleItem>>
 }

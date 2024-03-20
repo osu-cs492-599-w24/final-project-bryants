@@ -14,9 +14,9 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="78dp"
-            android:background="@color/bottom_nav_item_color"
-            app:titleTextColor="@android:color/white"
-            app:titleMarginTop="20dp"/>
+            android:background="#FFFFFF"
+            app:titleTextColor="@color/bottom_nav_item_color"
+            app:titleMarginTop="30dp"/>
 
         <!-- Ensure the FragmentContainerView uses the entire space below the toolbar -->
         <androidx.fragment.app.FragmentContainerView
