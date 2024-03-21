@@ -40,7 +40,6 @@ class MainActivity : AppCompatActivity() {
             setOf(
                 R.id.nav_home, // Use the actual IDs from your navigation graph
                 R.id.nav_add_item,
-                R.id.nav_gallery,
                 R.id.nav_calendar // Make sure these IDs are correctly referenced
             )
         )
