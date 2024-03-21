@@ -5,6 +5,11 @@ plugins {
 }
 
 buildscript {
+    repositories {
+        // Make sure that you have the following two repositories
+        google()  // Google's Maven repository
+        mavenCentral()  // Maven Central repository
+    }
     dependencies {
         classpath(
             "androidx.navigation:navigation-safe-args-gradle-plugin:2.7.7"

@@ -2,7 +2,9 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("androidx.navigation.safeargs.kotlin")
+    id("com.google.devtools.ksp") version "1.9.22-1.0.17"
     id("kotlin-kapt")
+    id("com.google.gms.google-services") version "4.4.1" apply false
 }
 
 android {
@@ -52,12 +54,18 @@ dependencies {
     implementation ("androidx.recyclerview:recyclerview:1.3.2")
     implementation("androidx.activity:activity-ktx:1.8.2")
 
+    implementation ("androidx.work:work-runtime-ktx:2.7.1")
+
+    // Add the dependency for the Realtime Database library
+    implementation(platform("com.google.firebase:firebase-bom:32.7.4"))
+    implementation("com.google.firebase:firebase-database")
+
     implementation("com.github.smarteist:autoimageslider:1.4.0")
 
     // Room Database
-    implementation ("androidx.room:room-runtime:2.4.2")
-    kapt ("androidx.room:room-compiler:2.4.2")
-    implementation ("androidx.room:room-ktx:2.4.2")
+    implementation ("androidx.room:room-runtime:2.6.1")
+    ksp("androidx.room:room-compiler:2.6.1")
+    implementation ("androidx.room:room-ktx:2.6.1")
 
     // Coroutines
     implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
@@ -65,6 +73,7 @@ dependencies {
 
     // Glide for image loading
     implementation("com.github.bumptech.glide:glide:4.14.2")
+    ksp("com.github.bumptech.glide:compiler:4.12.0")
     annotationProcessor("com.github.bumptech.glide:compiler:4.12.0")
     kapt ("com.github.bumptech.glide:compiler:4.12.0")
 

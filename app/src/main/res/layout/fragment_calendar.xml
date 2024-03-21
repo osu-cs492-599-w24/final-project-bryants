@@ -13,23 +13,22 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:orientation="vertical"
-        android:layout_marginTop="30dp"
-    >
+        android:layout_marginTop="30dp">
         
         <CalendarView
             android:layout_marginTop="40dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/calendar">
-
         </CalendarView>
 
         <Button
+            android:id="@+id/share_button"
             android:layout_width="150dp"
             android:layout_height="75dp"
             android:layout_gravity="center"
-            android:text="Share Date">
-
+            android:text="Bury Capsule">
         </Button>
+
     </LinearLayout>
 </LinearLayout>

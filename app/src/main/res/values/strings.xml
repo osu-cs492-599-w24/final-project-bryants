@@ -27,4 +27,24 @@
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_calendar">Calendar</string>
+
+    <string
+        name="notification_channel"
+        translatable="false">
+        notificationChannel
+    </string>
+    <string
+        name="notification_channel_title">
+        Time Capsule Updates
+    </string>
+    <string name="notification_title">
+        Time capsule ready to open!
+    </string>
+    <string name="notification_text">
+        A scheduled time capsule is ready to open.
+    </string>
+    <string name="notification_summary_title">
+        Time capsule is waiting!
+    </string>
+
 </resources>
