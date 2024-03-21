@@ -34,6 +34,7 @@ class DateDisplayFragment : Fragment() {
     lateinit var dateDisplayAdapter : DateDisplayAdapter
 
     private var timeCapsules: ArrayList<TimeCapsuleItem> = ArrayList()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
