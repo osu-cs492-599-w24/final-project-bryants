@@ -73,6 +73,7 @@ dependencies {
 
     // Glide for image loading
     implementation("com.github.bumptech.glide:glide:4.14.2")
+    annotationProcessor("com.github.bumptech.glide:compiler:4.12.0")
     ksp("com.github.bumptech.glide:compiler:4.12.0")
 
     testImplementation ("junit:junit:4.13.2")

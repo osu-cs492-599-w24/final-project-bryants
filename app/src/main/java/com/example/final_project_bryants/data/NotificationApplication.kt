@@ -23,8 +23,8 @@ class NotificationApplication : Application() {
 
     private fun launchNotificationWorker() {
 //        val workRequest = PeriodicWorkRequestBuilder<NotificationWorker>(
-//            20,
-//            TimeUnit.SECONDS
+//            24,
+//            TimeUnit.HOURS
 //        ).build()
 //        WorkManager.getInstance(this).enqueueUniquePeriodicWork(
 //            "NotificationWorker",

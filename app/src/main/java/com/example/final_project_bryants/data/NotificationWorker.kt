@@ -4,9 +4,11 @@ import android.Manifest
 import android.content.Context
 import android.content.pm.PackageManager
 import android.util.Log
+import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.os.bundleOf
 import androidx.navigation.NavDeepLinkBuilder
 import androidx.work.CoroutineWorker
@@ -43,9 +45,6 @@ class NotificationWorker (
             val currentMonth = simpleDate.format(Date()).split(":")[0]
             val currentDay = simpleDate.format(Date()).split(":")[1]
             val currentYear = simpleDate.format(Date()).split(":")[2]
-
-            Log.w("ShareDate", "WORKING...")
-            Log.w("ShareDate", "${month}:${currentMonth}, ${day}:${currentDay}, ${year}:${currentYear}")
 
             // if current time is equal or past notification time, trigger a notification
             if ((year.toInt() < currentYear.toInt())

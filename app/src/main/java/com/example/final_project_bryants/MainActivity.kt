@@ -15,6 +15,8 @@ import androidx.navigation.ui.setupWithNavController
 import com.example.final_project_bryants.databinding.ActivityMainBinding
 import com.example.final_project_bryants.ui.calendar.DateDisplayFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import java.text.SimpleDateFormat
+import java.util.Locale
 
 class MainActivity : AppCompatActivity() {
 
@@ -38,7 +40,6 @@ class MainActivity : AppCompatActivity() {
             setOf(
                 R.id.nav_home, // Use the actual IDs from your navigation graph
                 R.id.nav_add_item,
-                R.id.nav_gallery,
                 R.id.nav_calendar // Make sure these IDs are correctly referenced
             )
         )
@@ -58,12 +59,20 @@ class MainActivity : AppCompatActivity() {
 
     fun changeFragment(year: Int, month: Int, dayOfMonth: Int) {
         try {
+            val correctedMonth = month + 1
             // Create a formatted date string
-            val selectedDate = "$year-$month-$dayOfMonth"
+            val selectedDate = "$year-$correctedMonth-$dayOfMonth"
+
+            // Parse the selectedDate into a Date object
+            val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.US)
+            val date = dateFormat.parse(selectedDate)
+
+            // Format the Date object into desired format
+            val formattedDateString = SimpleDateFormat("MMMM dd yyyy", Locale.US).format(date)
 
             // Create a Bundle to hold the arguments
             val bundle = Bundle().apply {
-                putString("selectedDate", selectedDate)
+                putString("selectedDate", formattedDateString)
             }
 
             // Navigate to the DateDisplayFragment with arguments
