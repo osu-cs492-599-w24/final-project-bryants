@@ -6,10 +6,9 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-@Database(entities = [TimeCapsuleItem::class, NotificationItem::class], version = 1)
+@Database(entities = [TimeCapsuleItem::class], version = 1)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun timeCapsuleItemDao(): TimeCapsuleItemDao
-    abstract fun notificationDao(): NotificationDao
 
     companion object {
         @Volatile
@@ -20,9 +19,9 @@ abstract class AppDatabase : RoomDatabase() {
                 context,
                 AppDatabase::class.java,
                 "time-capsules-db"
-            ).allowMainThreadQueries().build()
+            ).build()
 
-        fun getInstance(context: Context) : AppDatabase {
+        fun getInstance(context: Application) : AppDatabase {
             return instance ?: synchronized(this) {
                 instance ?: buildDatabase(context).also {
                     instance = it
