@@ -16,10 +16,12 @@
         <item>Text</item>
         <item>Photo</item>
         <item>Link</item>
+        <item>Add With Camera</item>
     </array>
     <string name="hint_enter_link">Enter link...</string>
 
     <string name="select_photo">Select Photo</string>
+    <string name="take_photo">Take Photo</string>
 
     <string name="menu_add_item">Add Item</string>
     <string name="menu_home">Home</string>
