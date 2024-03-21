@@ -36,17 +36,23 @@ class NotificationWorker (
             val day = notificationDate[1]
             val year = notificationDate[2]
 
-            // get the current time
-            val simpleDate = SimpleDateFormat("mm/dd/yyyy", Locale.US)
+            Log.w("ShareDate", "WORKING...")
+
+            // get the current day
+            val simpleDate = SimpleDateFormat("mm:dd:yyyy", Locale.US)
             val currentMonth = simpleDate.format(Date()).split(":")[0]
             val currentDay = simpleDate.format(Date()).split(":")[1]
             val currentYear = simpleDate.format(Date()).split(":")[2]
 
-            Log.w("ShareDate", "WE ARE DOING WORK!!!")
+            Log.w("ShareDate", "WORKING...")
+            Log.w("ShareDate", "${month}:${currentMonth}, ${day}:${currentDay}, ${year}:${currentYear}")
 
             // if current time is equal or past notification time, trigger a notification
-            if ((month.toInt() <= currentMonth.toInt()) && (day.toInt() <= currentDay.toInt())
-                        && (year.toInt() <= currentYear.toInt())) {
+            if ((year.toInt() < currentYear.toInt())
+                || ((year.toInt() == currentYear.toInt()) && (month.toInt() < currentMonth.toInt()))
+                || ((year.toInt() == currentYear.toInt()) && (month.toInt() == currentMonth.toInt())
+                        && (day.toInt() <= currentDay.toInt())))
+            {
                 sendNotification(notification.dateToShare)
                 notificationRepository.deleteNotification(notification)
                 Log.w("ShareDate", "Notification Sent")

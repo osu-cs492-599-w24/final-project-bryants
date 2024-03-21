@@ -30,14 +30,16 @@ class DatePickerFragment : DialogFragment(), DatePickerDialog.OnDateSetListener 
     }
 
     override fun onDateSet(view: DatePicker, year: Int, month: Int, dayOfMonth: Int) {
-        Log.w("ShareDate", "currentDate is ${year}")
+        Log.w("ShareDate", "currentDate is ${month}")
+        val newMonth: Int = month+1
         var monthText: String = "March"
-        if (month.toInt() == 3) {
+        if (newMonth.toInt() == 3) {
             monthText = "March"
 
         }
+        Log.w("ShareDate", "newMonth is ${newMonth}")
         val dateToShare = "${monthText} ${dayOfMonth} ${year}"
-        val timeToShare = "${month}/${dayOfMonth}/${year}"
+        val timeToShare = "${newMonth}/${dayOfMonth}/${year}"
         val notification: NotificationItem = NotificationItem(dateToShare, timeToShare)
         val id = notificationViewModel.addNotification(notification)
     }

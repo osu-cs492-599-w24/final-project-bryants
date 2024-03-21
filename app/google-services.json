@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1095294980261",
+    "project_id": "time-capsule-10b43",
+    "storage_bucket": "time-capsule-10b43.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1095294980261:android:1d578edd0cb78c9755bd4c",
+        "android_client_info": {
+          "package_name": "com.example.final_project_bryants"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyANS6FBn6BaaSzHDOQUj3g91WEf7hX4VMg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

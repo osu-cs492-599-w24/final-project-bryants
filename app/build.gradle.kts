@@ -4,6 +4,7 @@ plugins {
     id("androidx.navigation.safeargs.kotlin")
     id("com.google.devtools.ksp") version "1.9.22-1.0.17"
     id("kotlin-kapt")
+    id("com.google.gms.google-services") version "4.4.1" apply false
 }
 
 android {
@@ -54,6 +55,10 @@ dependencies {
     implementation("androidx.activity:activity-ktx:1.8.2")
 
     implementation ("androidx.work:work-runtime-ktx:2.7.1")
+
+    // Add the dependency for the Realtime Database library
+    implementation(platform("com.google.firebase:firebase-bom:32.7.4"))
+    implementation("com.google.firebase:firebase-database")
 
     implementation("com.github.smarteist:autoimageslider:1.4.0")
 
